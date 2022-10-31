@@ -1,0 +1,659 @@
+conversão:
+tipo(variavel) - em c seria - (tipo) variavel
+
+vinculando variaveis:
+//declarando
+int i;
+//declarando uma variavel vinculada
+int j(i);
+
+recebendo tamanho de vetor:
+//tipo pode ser int, float, char, etc.
+tamVet = sizeof(vet) / sizeof(tipo);
+
+referencia:
+int x;
+int r& = x;
+r = 5; //estou modificando x
+//para passar uma variavel para uma funcao
+//e receber como uma referencia, basta
+//passar como variavel, e receber como referencia
+
+booleano:
+em c:
+int r = 7 < 5; // falso, então r = 0
+//então, em um if (r), rodaria else, e nao if;
+em c++ podemos usar bool r;
+bool b = true; // b vale 1
+bool b = false; // b vale 0
+
+<string> - biblioteca de string para c++
+obs: bibliotecas sem a extensão h, sao de c++
+string nome, linha;
+nome = "azzurah"
+linha = nome; // é possivel!!!
+cout << nome.size() << endl; // retorna a qtd
+//de caracteres utilizaveis em nome, no caso 7
+
+<vetor> - biblioteca de vetores!!!
+vetor<int> v; // cria um vetor inteiro
+//nesse caso, o vetor tem tamanho ilimitado!
+v.size() // retorna o tamanho do vetor!
+
+em c++ pode-se declarar argumentos inicializados,
+isso é, com valores default;
+para utilizar esses valores, basta chamar a
+funcao sem passar parametros;
+pode-se colocar apenas alguns valores default,
+mas nesse caso, deve-se passar parametros
+aos argumentos que nao sao inicializados E CLARO,
+NESSE CASO, os argumentos default deverão ser os
+ultimos!!
+
+namespace:
+é como se fosse uma funcao. deve ser usado assim:
+namespace nomeQualquer
+{
+qualquerCoisa (funcoes, prototipos, variaveis,
+struturas, classes, etc, etc, etc.)
+}
+e para acessar, usa-se :: - dessa maneira:
+ex: cout << nomeQualquer::qualquerCoisa << endl;
+
+uma constante do tipo float tem . (ponto) separando
+o decimal e um f depois. ex: 1.0f
+double so tem o ponto
+
+funcao que executa qualquer tipo de variaveis
+//exemplo
+template<typename tipo> -tipo- nome(tipo a, tipo b) {
+	return a + b;
+}
+//o -tipo- nao é o mesmo que tipo,
+//significa que pode ser qualquer um
+//tipo pode ser qualquer nome, como se fosse uma
+//variavel que guarda um tipo
+//exemplo de chamada
+cout << nome<float>(1.0f, 1.2f) << endl;
+//sem <float> tambem funcionaria, pois o programa
+//entende que é float
+//------------------------
+//tambem é comum...
+template<typename tipo>
+tipo nome(tipo a, tipo b) {
+	codigo;
+}
+//outro tipo de indentacao
+//o prototipo so nao tem { codigo; }, claro
+
+funcao membro - struct:
+se uma funcao é declarada dentro de uma struct,
+ela pode ser chamada utilizando uma variavel,
+e na funcao as variaveis nao precisam apontar para
+as variaveis de dentro da struct, pois, claro,
+o computador ja sabe qual variavel esta referenciada
+e na declaração da funcao, o nome da struct que deve
+apontar para o nome da funcao, mas com o operador ::
+(quatro pontos = dois pontos seguido de dois pontos)
+Se houver const no final da declaração, significa
+que as variaveis nao serao alteradas (importante
+em linguagens estruturadas como c++)
+
+membros static:
+struct NOME {
+	static string linha;
+}
+string NOME::linha = "frase";
+
+os membros static devem ser apontados por ::
+
+se for criado variaveis do tipo NOME, e em uma for
+mudado a variavel static do tipo string chamada
+linha, todas essas variaveis membros linha, de todos
+as variaveis NOME criadas serão modificadas;
+pra isso serve static.
+variaveis estaticas são as mesmas variaveis, mesmo
+que cada variavel de um tipo struct tenha essa
+variavel como membro;
+
+ponteiro this - ???
+
+construtores:
+uma funcao membro com o mesmo nome de sua classe
+- ou struct - é um construtor. uma funcao que serve
+para inicializar uma variavel daquela classe - ou
+struct.
+construtores podem ser sobrecarregados;
+ex da syntaxe:
+struct NOME {
+	int idade;
+	char inicial;
+	NOME(int i, char c); // construtor
+};
+int main() {
+	NOME matheus(5, m);
+	return;
+}
+NOME::NOME(int i, char c) {
+	idade = i;
+	inicial = c;
+}
+//também pode-se usar um construtor default, como
+struct NOME {
+	//variaveis
+	NOME();
+};
+//funcao main
+NOME::NOME() {
+	//variaveis recebem valores default
+}
+
+destrutores:
+assim como os construtores, destrutores são
+declarados nas structs / classes; ex de destrutor
+struct EXEMPLO {
+	int i;
+	EXEMPLO(); // construtor
+	~EXEMPLO(); // destrutor
+};
+
+
+OBS: normalmente um argumento do tipo string é
+declarado como: const string
+
+alocação dinamica de memoria:
+se criar um ponteiro de uma struct, deve ser feita
+alocação de memoria. ex:
+//struct chamada NOME
+//na funcao main
+NOME *pn;
+pn = new NOME(/* parametros do construtor */);
+//e se nao forem passados parametros:
+pn = new NOME;
+//o destrutor não é chamado nesse caso. para que
+//seja liberada memoria, usa-se:
+delete pn;
+//isso chama o destrutor!!!
+
+class:
+primeiro vem os metodos (funcoes membro)
+depois vem as variaveis
+por recomendação, todas as variaveis devem ser
+SEMPRE privadas...
+estruturando uma classe (class);
+public: - tudo o que está dentro de public pode ser
+chamado e modificado da main.
+private: - tudo o que está dentro de private só pode
+ser chamado e modificado da propria classe, ou seja,
+dos métodos dessa classe;
+
+herança:
+se uma classe tem metodos de outra, é desnecessário
+reescreve-los. para isso, existe a herança, que
+permite que uma classe acesse à métodos ou variaveis
+de outra; para isso, usa-se essa syntaxe
+
+class NOME : public LETRAS {
+	//codigo
+}
+
+a classe NOME pode acessar os atributos da classe
+LETRAS;
+
+se houver herança, pode surgir a necessidade de
+que uma classe acesse variáveis de outra, mas como
+elas estão privadas, essa classe não tem acesso.
+entretanto, surge a herança protected, que permite
+uma classe acessar a essas variaveis protegidas,
+mas nunca modifiá-las, como inserir valores, etc.
+
+herança multipla:
+se tenho tres classes, e uma tem acesso às duas
+outras, o codigo fica assim:
+
+class ADULTO : public CRIANCA, public BEBE {
+	//codigo
+}
+
+se quiser acessar variaveis que ja foram
+inicializadas com o construtor dessa classe, nos
+metodos de outras classes, deve-se chamar o
+construtor referenciando outras classes, como se
+dissesse ao computador que as variaveis construidas
+também valem para aquelas classes. ex do codigo:
+
+class ADULTO : public CRIANCA, public BEBE {
+	//prototipo do construtor "referenciando"
+	//as outras duas classes
+	ADULTO(tipo par) : CRIANCA(par), BEBE(par);
+	//par == parametros
+	//importante notar que para CRIANCA e BEBE
+	//so sao passador os parametros, e em
+	//ADULTO é declarado o parametro com const
+	//se houver, e o tipo do parametro + nome
+}
+
+
+polimorfismo:
+usando parte do exemplo acima, suponhando que ADULTO
+so possa andar e gatinhar, CRIANCA so possa correr
+e gatinhar e BEBE so possa gatinhar, levando em
+consideração que correr, andar e gatinhar sejam
+metodos das classes CRIANCA, ADULTO e BEBE, respect.
+na declaração das classes, definimos qual classe
+tem acesso à quais atributos publicos de outras,
+mas na hora de inicializar com um construtor,
+inicializando, por exemplo, ADULTO como ADULTO e 
+BEBE:
+ADULTO *homem = new ADULTO(tipo par) : BEBE(par);
+BEBE tem acesso à esses atributos que foram
+inizializados como ADULTO e BEBE, mas claro, nao
+tem, e nem teria por que, ter acesso aos metodos
+de adulto. apenas o contrário por conta da
+declaracao da classe ADULTO no inicio;
+--- conversoes ---
+mesmo que um ADULTO e uma CRIANCA sejam um BEBE,
+este não é um ADULTO nem uma CRIANCA, portanto,
+ADULTO adulto;
+BEBE bebe;
+CRIANCA cri;
+//isso
+adulto = bebe;
+//e
+cri = bebe;
+//não é valido. mas para isso, basta converter:
+adulto = static_cast<ADULTO*>(bebe);
+cri = static_cast<CRIANCA*>(bebe);
+//agora é valido!!
+--- loucura ---
+se ha variaveis de um tipo que receberam outro tipo,
+atravez da chamada do construtor por conta da
+alocacao dinamica de memoria com new, é possivel
+fazer com que essa(s) variavel(is) use(m) metodos
+de outra classe. basta colocar:
+virtual
+antes do metodo chamado. ATENÇÃO!: para isso, os
+metodos tem que estar sobrecarregados, ou seja,
+deve haver metodos com assinaturas iguais em ambas!
+
+nesse caso acima, deve ser criado um destrutor
+virtual. nada demais. apenas basta:
+virtual ~NOMEDACLASSE(); na funcao que chamou
+o metodo virtual.
+O metodo virtual deve ser utilizado pela classe que
+quer ter acesso aos metodos sobrecarregados das
+outras;
+
+
+funcoes FRIEND:
+se tivermos uma funcao fora do escopo de uma classe,
+ou seja, uma funcao que nao é membro de uma classe,
+mas quisermos que ela acesse as variaveis privadas
+dessa classe, basta declarar o prototipo dessa
+funcao no escopo da classe, como uma funcao friend:
+ex:
+friend tipo nome(tipo parametro);
+
+classes friend:
+igual as funcoes friend:
+friend class NOME;
+mas deve haver valores default nos parametros do
+construtor da classe que declara a amiga;
+- isso também vale para classes compostas -
+
+operadores de conversao:
+como as variaveis de uma classe sao restritas,
+nao é tao simples copiar o valor de uma variavel
+privada para uma variavel na funcao main, por ex.
+para isso, basta converter a class NOME, em um tipo.
+há um truque. basta criar um metodo que retorne
+uma variavel desejada do tipo desejado. ex
+
+int NOME {
+public:
+	//metodo de conversao
+	operador int() {
+		return num;
+	}
+	//operador é nome fixo
+private:
+	int num;
+}
+//usando o metodo na main
+int numero;
+NOME classe;
+numero = int(NOME);
+
+
+classe template:
+https://www.youtube.com/watch?v=f_rWVQOcvuI&list=PL54fdmMKYUJvS32aLptKVC0AH9bwsavzi&index=32
+
+
+stack (pilha):
+em c++ ja há o tipo stack. basta definir o tipo
+primitivo (ou nao) e saber usar os metodos:
+//definição
+stack<int> pilha; //poderia ser double, etc.
+//alocando valores
+pilha.push(num); //num do tipo int
+//acessando ultimo valor
+pilha.top();
+//mostrando ultimo valor...
+cout << pilha.top() << endl;
+//retirando o ultimo valor
+pilha.pop();
+
+
+deque:
+biblioteca: <deque>
+funciona como a pilha, mas opdemos acessar tanto
+a frente quanto atrás. ex.
+//declarando
+deque<double> p;
+//alocando valor atrás
+p.push_back(num); //num sendo val double
+//alocando valor na frente
+p.push_front(num);
+//pop também funciona igual, etc. etc.
+
+
+pair:
+serve como uma variavel que guarda duas variaveis,
+uma de cada tipo; para usar numa funcao, usa-se
+template. ex:
+
+template<typename tipo1, typename tipo2>
+void imprime(const pair<tipe1, tipe2> &p) {
+	cout << p.first << ' ' << p.second << endl;
+}
+//na funcao main
+pair<int, string> p;
+p.first = 1;
+p.second = "alo!"
+imprime(p);
+
+
+map:
+praticamente um vetor de pairs. exemplo de uso:
+#include <map>
+//na funcao main
+map<int, string>::iterador i;
+map<int, string> per;
+//dentro dos colchetes esta a primeira variavel
+//e após o recebe (=) está a segunda
+per[0] = "akira";
+per[1] = "aori";
+per[2] = "azzurah";
+for (i = per.begin(); i != per.end(); i++) {
+    cout << i->first << ": " << i->second << endl;
+}
+
+
+list:
+
+
+
+algorithm:
+são funcoes onde é possivel brincar com vetores. ex:
+#include <iostream>
+#include <vetor>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+vetor<int>::interator i;
+vetor<int> v;
+//incluindo valores no vetor
+v.push_back(1);
+v.push_back(11);
+v.push_back(2);
+v.push_back(3);
+v.push_back(7);
+//ordena o vetor (coloca em ordem)
+sort(v.begin(), v.end());
+//procurando o elemento de um valor espedifico (7)
+i = find(v.begin(), v.end(), 7);
+//percorre o vetor
+for_each(v.begin(), v.end(), imprime);
+//imprime é essa funcao:
+void imprime(int i) {
+	cout << i << endl;
+}
+//e por algum motivo, passamos sem os ()
+//se quisermos contar quantos valores iguais:
+qtdNum = count(c.vegin(), v.end(), num);
+
+
+FSTREAM:
+entrada e saida de arquivos por fluxo de dados:
+//biblioteca
+#include <fstream>
+//definicao de variavel para insercao de dados
+ofstream pa;
+//definicao de variavel para leitura de dados
+ifstream pa;
+
+//abrindo arquivo
+pa.open("arquivo");
+//testando se o arquivo foi aberto
+if (!pa.is_open()) {
+	cout << "erro" << endl;
+	return 1;
+}
+//inserindo no arquivo
+pa << "string, variavel, qualquer coisa... << endl;
+//limpando para fechar
+pa.flush();
+//fechando
+pa.close();
+//lendo stream de dados do arquivo
+pa >> var1 >> var2 >> etc >> etc >> etc;
+//para mostrar os valores
+cout << var1 << ' ' << var2 << ' ' << blablabla;
+
+SSTREAM:
+entrada e saida de arqs por fluxo de dados em string
+//biblioteca
+#include <sstream>
+//definicao de string
+string s;
+//definicao de variaveis
+ostringstream o;
+o << 1 << " " << "hola" << ' ' << 10;
+s = o.str();
+cout << s << endl;
+aprende sozinho dps. complicado demais pra um gringo
+
+
+regra numero 1:
+se string falhar, substitoi por char* kkkkkk. serio!
+
+
+exceções: controlando erros:
+try {
+	//aqui se coloca comandos que podem nao
+	//funfar corretamente e gerar erro.
+	if (erro gerado) { //ex, (denominador == 0)
+		throw "mensagem de erro"
+	}
+	//acima, throw lanca uma mensagem até o
+	//proximo comando catch (pega)
+	//aqui pode haver continuação do codigo,
+	//obviamente, caso nao gere erro!
+} catch (const char *error) { //o pont pode ter
+			      //qualquer nome
+	cout << "Error: " << error << endl;
+	return 1;
+}
+
+
+operações com vetores:
+utiliza-se normalmente os operadores como funcoes,
+exemplo:
+//template serve para que a funcao sirva para
+//qualquer tipo de variavel que se queira usar
+//<typename t> torna esse t, o tipo que sera usado
+//vetor<t> torna o vetor do tipo chamado || || ||
+//operador<<, diz que o "nome" da funcao sera um
+//operador, e << será esse "nome"
+//&operador, por que a funcao deve retornar uma
+//referencia (como um ponteiro), ja que retorna
+//mais de um valor
+//vetor<t> &v, cria uma variavel v, por referencia
+//(&) que recebe um vetor to tipo t (vetor<t> &v);
+//por ser um vetor, deve haver o &, claro
+//const t &val, declara uma variavel val, por
+//referencia &, do tipo t, constante (const t &val);
+template<typename t> vetor<t> &operador<<(vetor<t>
+&v, const t &val) {
+
+
+
+imprimindo vetor em stream:
+//prototipo
+template<typename tipe> ostream &operador<<(ostream
+	&o, const vetor<tipe> &v);
+//funcao
+template<typename tipe> ostream &operador<<(ostream
+	&o, const vetor<tipe> &v) {
+	
+	//como o vetor foi declarado const,
+	//o iterador tambem deve ser const
+	vetor<tipe>::const_iterador i;
+	for (i = v.begin(); i != v.end(); i++) {
+		//o valor que esta no endereço de
+		//memoria de i, é carregado em o
+		o << *i << ' ';
+	return o;
+
+}
+
+concatenando vetores:
+https://www.youtube.com/watch?v=dIoAognGWU8&index=44&list=PL54fdmMKYUJvS32aLptKVC0AH9bwsavzi
+
+converter vetor em lista:
+
+
+conectando objetos:
+exemplo:
+tem-se uma classe chamada PESSOA; basta criar um
+ponteiro do tipo PESSOA como variavel dessa classe,
+e para conecta-las, basta criar um metodo que
+receba a referencia de uma variavel do tipo PESSOA,
+e atribua esse valor recebido nesse ponteiro que
+foi declarado como pessoa na propria classe PESSOA;
+(o metodo fica com uma linha de codigo mesmo);
+
+
+EXPLICIT:
+em c++, o computador entende algumas coisas, mesmo
+que nao sejam especificadas, pincipalmente tipos.
+ele converte tipos automaticamente caso seja
+necessario. explicit serve para nao deixar ele
+fazer essas conversoes automaticas. ex de syntaxe:
+explicit int funcao(int var1);
+
+MATRIZ:
+declaracao de matriz:
+vetor<vetor<int>> matriz;
+//se nao funcionar, serpare >> (> >)
+a utilização é identica a da linguagem c
+
+AUTO:
+auto é um tipo de variavel que detecta o tipo do
+valor inicializado na variavel, e torna essa
+variavel este mesmo tipo.
+se for utilizado o tipo string, e provavelmente
+todos os tipos nao primitivos, a sintaxe muda um
+pouco. exemplo dos usos:
+auto var = 1; //var se torna o tipo int
+auto var = string("texto"); //var se torna string
+
+DECLTYPE:
+converte uma expressao em um tipo. praticamente
+igual auto; basicamente inutil. ex:
+decltype(2 / 3) variavel;
+
+AUTO+DECLTYPE:
+uma funcao declarada como auto, pode retornar
+um tipo automatico, mas apenas com decltype. ex:
+auto funcao(int num) -> decltype(expressao final) {
+//o parametro nao pode ser auto!
+
+FOREACH:
+estrutura for que percorre uma array, sem necessitar
+saber o tamanho da array. exemplo de uso:
+int vetor[] = { 1, 2, 4, 8, 16, 8, 4 };
+for(int i : vetor) {
+	//codigo
+}
+i é uma copia de cada valor da array;
+portanto se usar cout << i << endl; no //codigo,
+sera printado, no console, os valores da array;
+isso funciona para vetor<tipo>, etc, etc...
+normalmente, quando se usa matriz, por exemplo,
+é substituido a declaracao do tipo dentro do for,
+por auto, que da na mesma e economiza espaço,
+e alem disso é utilizado um valor de referencia,
+ao invez de ser copiado todo um valor. pois do
+contrario, se gasta muita memoria atoa. mas para
+impedir que o valor seja modificado, é utilizado
+const (claro, caso nao se queira que o valor seja
+modificado!!).
+
+
+FINAL:
+é utilizado depois do nome de uma classe em sua
+declaração, para protege-la de classes que seriam
+declaradas opdendo utilizar os modulos da primeira.
+exemplo de uso:
+class Exemplo final {
+
+
+nos headers nao deve ser declarado:
+using namespace std;
+então nas variaveis nao priimtivas, como string,
+deve haver uma referenciação antes. dessa maneira:
+std:string nome;
+
+
+
+recomendacoes da linguagem:
+ordem de hierarquias:
+public: 
+protectec: 
+private: 
+
+variaveis membro:
+sejam declaradas com m_ antes, ou apenas _ . Ex:
+int m_num; char m_letra; ou:
+int _num, string _linha;
+mas é comumente usado assim:
+int mNum; char mLetra
+//esse m significa membro
+
+e nas funcoes membro (metodo), seus parametros sejam
+declarados normalmente, para nao ser confundido
+uma variavel membro com uma recebida da main, etc.
+
+os modulos para inserção se valores nas variaveis
+membro devem ter o nome setNomeDaVariavel; ex:
+//uma classe que tenha a variavel m_num;
+tipo setNum(tipo num);
+
+os modulos para devolver valores (os que tem,
+normalmente, apenas uma linha de codigo, no caso,
+a linha return variavel;) devem ter apenas o nome
+da variavel membro, ou getVariavel; ex:
+//uma classe que tenha a variavel m_num;
+tipo getNum(); ou:
+tipo num();
+
+
+nome das classes:
+comecem com letra maiuscula. Ex:
+//declaracao da classe nome;
+class Nome {
+
+ 

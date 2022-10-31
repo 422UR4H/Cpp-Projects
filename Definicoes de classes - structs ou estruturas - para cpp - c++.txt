@@ -1,0 +1,31 @@
+sobre classes (structs) voltada a OO em C++
+
+classe - struct para OO
+tem como caracteristica o encapsulamento de atributos e metodos
+atributos - dados da classe
+metodos - funções membros da classe
+objeto/instancia - variavels declaradas ao tipo de classe
+assinatura - tipo de valor retornado; nome; lista de tipos de parametros
+construtor - função membro que inicializa atributos da classe
+destrutor - função que faz o reverso
+sobrecarga - funções com mesmo nome, mas algo diferente na assinatura
+
+p/ referenciar a definição de funções membros às classes usa-se ::
+
+
+
+
+
+ler sobre:
+comandos:
+template, typename, operador, try, catch, const, NAMESPACE
+**bibliotecas em geral**
+	funcoes:
+	iterador, const_iterador, 
+outros:
+poliformismo, ostream, THIS, STATIC, inline, VIRTUAL,
+OPERADORES DE CONVERSAO, CLASSE TEMPLATE, LIST, SSTREAM,
+quando usar CONST, 
+operacoes com vetores, matrizes, algorithm
+QT:
+signals e slots
